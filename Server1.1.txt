@@ -1,0 +1,98 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "0c001e41",
+   "metadata": {},
+   "source": [
+    "## Consider Own machine as Client and Own Machine as server"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "id": "c7a755fd",
+   "metadata": {},
+   "source": [
+    "Process To Run Programm\n",
+    "Step-1: Open New file in Jupyter give Name Server1\n",
+    "Step-2: Write Python code for Server1 Program.\n",
+    "Step-3: Save Server1 Program.\n",
+    "Step-4: Open New file in Jupyter give Name Client1\n",
+    "Step-5: Write Python code for Client1 Program.\n",
+    "Step-6: Save Client1 Program.\n",
+    "Step-7: Run Code of Server1 Program.\n",
+    "Step-8: Run Code of Client1 Program"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "e9e72bd4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import socket as skt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "a3405b50",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Your Computer Name is:Laved\n",
+      "Your Computer IP Address is:192.168.1.101\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Find the IP adress and Name of own PC\n",
+    "hostname = skt.gethostname()    \n",
+    "IPAddr = skt.gethostbyname(hostname)    \n",
+    "print(\"Your Computer Name is:\" + hostname)    \n",
+    "print(\"Your Computer IP Address is:\" + IPAddr)  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "49f6f096",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#TCP/IP Server\n",
+    "s=skt.socket(skt.AF_INET,skt.SOCK_STREAM)\n",
+    "s.bind((\"192.168.1.101\",5001))\n",
+    "s.listen(1)\n",
+    "c,addr=s.accept()\n",
+    "c.send(b\"Hello Bro, How are you !\")\n",
+    "c.close()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
